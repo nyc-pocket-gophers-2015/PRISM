@@ -12,7 +12,7 @@ class View
   end
 
   def result
-    if card.answer == user_input ?  "Correct!" : "Incorrect, try again."
+    card.answer == user_input ?  "Correct!" : "Incorrect, try again."
   end
 
   def goodbye
@@ -24,24 +24,3 @@ class View
   end
 
 end
-
-view = View.new
-view.welcome
-
-
-if ARGV != []
-  file = ARGV[0]
-else
-  file = 'flashcard_samples.txt'
-end
-
-puts "Welcome! You are using #{file}"
-puts "To play, just enter the correct term for each definition.  Ready?  Go!"
-begin
-  test = Deck.new(file)
-  test.study_and_review
-rescue Errno::ENOENT
-  puts "That wasn't a valid file. Please try again."
-end
-
-
