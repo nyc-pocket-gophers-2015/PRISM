@@ -1,4 +1,6 @@
-class View
+module View
+
+  extend self
 
   def welcome
     #{deck.topic}
@@ -11,8 +13,13 @@ class View
     puts "Question: #{card.question}"
   end
 
-  def result
-    card.answer == user_input ?  "Correct!" : "Incorrect, try again."
+  def result(card, input)
+    puts card.answer == input ?  "Correct!" : "Incorrect, try again."
+  end
+
+  def check(card, input)
+    result(card, input)
+    card.answer == input
   end
 
   def goodbye
