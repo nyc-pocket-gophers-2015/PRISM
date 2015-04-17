@@ -23,7 +23,7 @@ module View
   end
 
   def goodbye
-    puts "Thanks for playing!! Keeping Studying"
+    puts "Thanks for playing!!!\nPress \"Q\" to quit or \"N\" to load a new game"
   end
 
   def user_input
