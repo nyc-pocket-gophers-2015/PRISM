@@ -23,7 +23,7 @@ module View
   end
 
   def goodbye
-    #summary
+    puts "Thanks for playing!! Keeping Studying"
   end
 
   def user_input
