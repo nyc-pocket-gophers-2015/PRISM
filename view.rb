@@ -29,7 +29,11 @@ module View
 
   def user_input
     ARGV.clear
-    gets.chomp
+    gets.chomp.upcase
+  end
+
+  def prompt_file_name
+    puts "What's the file name of your new deck?"
   end
 
 end

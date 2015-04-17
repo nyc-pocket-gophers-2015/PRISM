@@ -27,20 +27,28 @@ def play(deck)
       checker = nil
       until count == 3 || checker == true
         View.ask_question(card)
-        input = View.user_input.downcase
-        exit_program if input.upcase == "q".upcase
+        input = View.user_input
+        exit_program if input.upcase == "Q"
         View.result(card, input)
         count +=1
         card.tries += 1
-        checker = card.answer.downcase == input.downcase
+        checker = card.answer.upcase == input
       end
     end
     View.goodbye
-    # deck.study_and_review
+    input = View.user_input
+    if input == "Q"
+      exit_program
+    elsif input == "N"
+      View.prompt_file_name
+      file = View.user_input
+      play(instantiate_deck(file))
+    else
+      "That wasn't a valid file. Please try again."
+    end
   rescue Errno::ENOENT
     puts "That wasn't a valid file. Please try again."
   end
 end
 
-
-play instantiate_deck(file)
+play instantiate_deck(file) #kickoff
