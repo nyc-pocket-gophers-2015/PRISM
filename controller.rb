@@ -14,6 +14,11 @@ def instantiate_deck(file)
   deck = Deck.new(topic: file, cards: card_objects)
 end
 
+def exit_program
+  puts `clear`
+  exit
+end
+
 def play(deck)
   View.welcome
   begin
@@ -23,8 +28,10 @@ def play(deck)
       until count == 3 || checker == true
         View.ask_question(card)
         input = View.user_input.downcase
+        exit_program if input.upcase == "q".upcase
         View.result(card, input)
         count +=1
+        card.tries += 1
         checker = card.answer.downcase == input.downcase
       end
     end

@@ -4,6 +4,7 @@ module View
 
   def welcome
     #{deck.topic}
+    puts `clear`
     puts '*' * 100
     puts "Welcome to Ruby Flash Cards. To play, just enter the correct term for each definition.  Ready?  Go!"
     puts '*' * 100
@@ -27,6 +28,7 @@ module View
   end
 
   def user_input
+    ARGV.clear
     gets.chomp
   end
 
