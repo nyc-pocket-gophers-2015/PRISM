@@ -15,7 +15,7 @@ module View
   end
 
   def result(card, input)
-    puts card.answer == input ?  "Correct!" : "Incorrect, try again."
+    puts card.answer.upcase == input ?  "Correct!" : "Incorrect, try again."
   end
 
   def check(card, input)
