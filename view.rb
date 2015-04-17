@@ -4,6 +4,7 @@ module View
 
   def welcome
     #{deck.topic}
+    puts `clear`
     puts '*' * 100
     puts "Welcome to Ruby Flash Cards. To play, just enter the correct term for each definition.  Ready?  Go!"
     puts '*' * 100
@@ -14,7 +15,7 @@ module View
   end
 
   def result(card, input)
-    puts card.answer == input ?  "Correct!" : "Incorrect, try again."
+    puts card.answer.upcase == input ?  "Correct!" : "Incorrect, try again."
   end
 
   def check(card, input)
@@ -27,7 +28,12 @@ module View
   end
 
   def user_input
-    gets.chomp
+    ARGV.clear
+    gets.chomp.upcase
+  end
+
+  def prompt_file_name
+    puts "What's the file name of your new deck?"
   end
 
 end
