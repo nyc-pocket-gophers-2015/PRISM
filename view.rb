@@ -1,4 +1,6 @@
-class View
+module View
+
+  extend self
 
   def welcome
     #{deck.topic}
@@ -11,12 +13,17 @@ class View
     puts "Question: #{card.question}"
   end
 
-  def result
-    if card.answer == user_input ?  "Correct!" : "Incorrect, try again."
+  def result(card, input)
+    puts card.answer == input ?  "Correct!" : "Incorrect, try again."
+  end
+
+  def check(card, input)
+    result(card, input)
+    card.answer == input
   end
 
   def goodbye
-    #summary
+    puts "Thanks for playing!! Keeping Studying"
   end
 
   def user_input
@@ -24,24 +31,3 @@ class View
   end
 
 end
-
-view = View.new
-view.welcome
-
-
-if ARGV != []
-  file = ARGV[0]
-else
-  file = 'flashcard_samples.txt'
-end
-
-puts "Welcome! You are using #{file}"
-puts "To play, just enter the correct term for each definition.  Ready?  Go!"
-begin
-  test = Deck.new(file)
-  test.study_and_review
-rescue Errno::ENOENT
-  puts "That wasn't a valid file. Please try again."
-end
-
-
