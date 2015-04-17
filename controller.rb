@@ -9,23 +9,31 @@ else
   file = 'flashcard_samples.txt'
 end
 
-View.welcome
-begin
+def instantiate_deck(file)
   card_objects = Parser.parse_data(file).map {|hash| Card.new(hash)}
   deck = Deck.new(topic: file, cards: card_objects)
-  deck.cards.shuffle.each do |card|
-    count = 0
-    checker = nil
-    until count == 3 || checker == true
-      View.ask_question(card)
-      input = View.user_input.downcase
-      View.result(card, input)
-      count +=1
-      checker = card.answer.downcase == input.downcase
-    end
-  end
-  View.goodbye
-  # deck.study_and_review
-rescue Errno::ENOENT
-  puts "That wasn't a valid file. Please try again."
 end
+
+def play(deck)
+  View.welcome
+  begin
+    deck.cards.shuffle.each do |card|
+      count = 0
+      checker = nil
+      until count == 3 || checker == true
+        View.ask_question(card)
+        input = View.user_input.downcase
+        View.result(card, input)
+        count +=1
+        checker = card.answer.downcase == input.downcase
+      end
+    end
+    View.goodbye
+    # deck.study_and_review
+  rescue Errno::ENOENT
+    puts "That wasn't a valid file. Please try again."
+  end
+end
+
+
+play instantiate_deck(file)
