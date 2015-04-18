@@ -9,7 +9,8 @@ class Card
   end
 
   def to_s
-    "#{question}"
+    # this is always a string already, no?
+    @question
   end
 
 end
